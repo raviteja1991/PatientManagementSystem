@@ -19,15 +19,27 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "target": "esnext",
+  "typeRoots": [
+    "./node_modules/@types",
+    "./node_modules/rxjs/dist/types/operators/index.d.ts"
+  ],
+  "paths": {
+    "rxjs": [
+      "./node_modules/rxjs/dist/esm/index"
+    ]
   }
 }
