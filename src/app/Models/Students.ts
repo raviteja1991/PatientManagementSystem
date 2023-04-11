@@ -1,12 +1,10 @@
-export class Patients {
-    patientID: any;
+export class Students {
+    studentID: any;
     firstName?: string;
     lastName?: string;
-    fullName?: string;
     dob?: Date;
     gender?: string;
-    age?: number;
-    patientAddress?: string;
+    studentAddress?: string;
     phoneNumber?: number;
     emailAddress?: string;
 }

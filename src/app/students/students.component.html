@@ -1,0 +1,120 @@
+<style>
+.col-sm-10 {
+  margin-left: 15px;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <a class="navbar-brand" style="margin-left: 50px; font-size: large;" href="#">Student Management System</a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" style="margin-left: 100px;">
+        <a class="nav-link" style="font-size: large;" routerLink="">Home</a>
+      </li>
+      <li class="nav-item" style="margin-left: 100px;">
+        <a class="nav-link" style="font-size: large;" (click)="logOut()">Logout</a>
+      </li>
+      <li *ngIf="!isUserAuthenticated()" class="nav-item active" style="margin-left: 100px;">
+        <a class="nav-link" style="font-size: large;" routerLink="/app-students">Students</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form class="form-horizontal" [formGroup]="studentForm">
+  <h1 style="text-align: center;">Welcome to Student Management System</h1>
+  <div>
+    <div class="alert alert-success" style="text-align: center;"><b>Students List</b></div>
+    <div class="table-responsive" style="margin-left: 50px;">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student First Name</th>
+            <th scope="col">Student Last Name</th>
+            <th scope="col">Student Date Of Birth</th>
+            <th scope="col">Student Gender</th>
+            <th scope="col">Student Address</th>
+            <th scope="col">Student Phone Number</th>
+            <th scope="col">Student Email Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of StudentsList | async; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{p.firstName}}</td>
+            <td>{{p.lastName}}</td>
+            <td>{{p.dob}}</td>
+            <td>{{p.gender}}</td>
+            <td>{{p.studentAddress}}</td>
+            <td>{{p.phoneNumber}}</td>
+            <td>{{p.emailAddress}}</td>
+            <td><button type="button" class="btn1" matTooltip="Click Edit Button"
+                (click)='StudentDetailsToEdit(p.studentID)'>Edit</button>
+              |
+              <button type="button" class="btn1" matTooltip="Click Delete Button"
+                (click)="DeleteStudent(p.studentID)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br />
+  <div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Student First Name:</label>
+      <input type="text" style="margin: 5px;" class="form-control" id="txtStudentFirstName"
+        formControlName="studentFirstName" placeholder="First Name of Student">
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Student Last Name:</label>
+      <input type="text" style="margin: 5px;" class="form-control" id="txtStudentLastName" formControlName="studentLastName"
+        placeholder="Last Name of Student">
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Student Date of Birth:</label>
+      <input type="date" style="margin: 5px;" class="form-control" id="dateStudentDOB" formControlName="studentDateOfBirth"
+        placeholder="D.O.B of Student">
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Student Gender:</label>
+      <input type="text" style="margin: 5px;" class="form-control" id="txtStudentGender" formControlName="studentGender"
+        placeholder="Gender of Student">
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Student Address:</label>
+      <input type="text" style="margin: 5px;" class="form-control" id="txtStudentAddress" formControlName="studentAddress"
+        placeholder="Address of Student">
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Phone Number:</label>
+      <input type="text" style="margin: 5px;" class="form-control" id="txtStudentPhoneNumber" formControlName="studentPhoneNumber"
+        placeholder="Phone Number of Student">
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="margin-left: 100px;" for="pwd">Email Address:</label>
+      <input type="text" style="margin: 5px;" class="form-control" id="txtStudentEmailAddress" formControlName="studentEmailAddress"
+        placeholder="Email Address of Student">
+    </div>
+    <br />
+    <div class="form-group">
+      <div class="container" style="margin-left: 100px;">
+        <div class="col-sm">
+          <button type="submit" style="margin: 15px;" class="btn btn-primary" (click)="PostStudent(studentForm.value)">Submit</button>
+          <button type="submit" style="margin: 15px;" class="btn btn-primary" (click)="UpdateStudent(studentForm.value)">Update</button>
+          <button type="submit" style="margin: 15px;" class="btn btn-primary" (click)="Clear(studentForm.value)">Clear</button>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</form>
