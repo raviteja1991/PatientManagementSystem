@@ -10,16 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth/authentication.service';
-import { StudentsComponent } from './students/students.component';
+import { PatientsComponent } from './patients/patients.component';
 import { HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { CommonModule, DatePipe } from '@angular/common';
 
 //all components routes
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'app-students', component: StudentsComponent, canActivate: [AuthGuard] },
+  { path: 'app-patients', component: PatientsComponent, canActivate: [AuthGuard] },
   { path: 'app-login', component: LoginComponent },
 ];
 
@@ -33,7 +32,7 @@ export function tokenGetter() {
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    StudentsComponent
+    PatientsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +49,7 @@ export function tokenGetter() {
         disallowedRoutes: []
       }
     }),
-    ToastrModule.forRoot(),
-    CommonModule,
-    DatePipe
+    ToastrModule.forRoot()
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
